@@ -1,0 +1,12 @@
+{
+  "name": "@gideon/booking-friction-detector",
+  "version": "1.0.0",
+  "description": "Booking Friction Detector: Analyzes appointment & consultation booking flows to pinpoint unnecessary steps, mobile keyboard friction, and drop-off bottlenecks.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "start": "node src/index.js"
+  },
+  "author": "Gideon Autonomous Workforce",
+  "license": "MIT"
+}

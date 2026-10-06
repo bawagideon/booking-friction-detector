@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking Friction Detector</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: rgba(18, 24, 38, 0.8);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-rose: #f43f5e;
+      --accent-amber: #f59e0b;
+      --font-sans: 'Inter', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text-main); font-family: var(--font-sans); padding: 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--card-border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+    .controls { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; display: grid; grid-template-columns: 1fr 1fr auto; gap: 1rem; align-items: end; }
+    @media (max-width: 768px) { .controls { grid-template-columns: 1fr; } }
+    .compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+    @media (max-width: 800px) { .compare-grid { grid-template-columns: 1fr; } }
+    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 1.5rem; }
+    .step-box { background: rgba(255,255,255,0.03); border: 1px solid var(--card-border); border-radius: 8px; padding: 0.75rem 1rem; margin-bottom: 0.5rem; font-size: 0.85rem; display: flex; justify-content: space-between; }
+    .btn { background: linear-gradient(135deg, #06b6d4, #0284c7); color: #fff; font-weight: bold; border: none; padding: 0.75rem 1.25rem; border-radius: 8px; cursor: pointer; transition: 0.2s; }
+    .btn:hover { opacity: 0.9; }
+    .btn-secondary { background: rgba(255,255,255,0.08); color: var(--text-muted); border: 1px solid var(--card-border); }
+    .btn-secondary:hover { color: #fff; background: rgba(255,255,255,0.15); }
+    input { width: 100%; padding: 0.6rem 0.8rem; background: #0b1120; border: 1px solid #334155; color: #fff; border-radius: 6px; font-family: var(--font-mono); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>📅 Booking Friction Detector</h1>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">Appointment Funnel Step Bloat & Conversion Simulator</p>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan); background: rgba(6,182,212,0.1); border: 1px solid rgba(6,182,212,0.3); padding: 0.4rem 0.8rem; border-radius: 6px;">
+        Weapon #07 · Deterministic CRO
+      </div>
+    </header>
+
+    <div class="controls">
+      <div>
+        <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">Monthly Booking Starts</label>
+        <input type="number" id="inAttempts" value="300" min="10" max="10000">
+      </div>
+      <div>
+        <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">Average Patient / Client Value ($)</label>
+        <input type="number" id="inValue" value="400" min="50" max="50000">
+      </div>
+      <div style="display: flex; gap: 0.5rem;">
+        <button class="btn" onclick="calculateFriction()">Simulate Conversion</button>
+        <button class="btn btn-secondary" onclick="resetDefaults()">Reset</button>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <!-- Legacy Flow -->
+      <div class="card" style="border-top: 4px solid var(--accent-rose);">
+        <h3 style="color: var(--accent-rose); margin-bottom: 0.5rem;">Legacy 6-Step Gated Flow</h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Typical Dental / Medical / Legal appointment friction</p>
+
+        <div class="step-box"><span>1. Click "Book Now"</span><span style="color: var(--text-muted);">Redirect</span></div>
+        <div class="step-box" style="border-color: rgba(244,63,94,0.4);"><span>2. Create Account & Password</span><span style="color: #f43f5e; font-weight: bold;">-28% Drop</span></div>
+        <div class="step-box"><span>3. Verify Email Address</span><span style="color: #f43f5e; font-weight: bold;">-14% Drop</span></div>
+        <div class="step-box" style="border-color: rgba(244,63,94,0.4);"><span>4. 14-Field Medical Intake</span><span style="color: #f43f5e; font-weight: bold;">-22% Drop</span></div>
+        <div class="step-box"><span>5. Pick Date & Provider</span><span style="color: var(--text-muted);">Selection</span></div>
+        <div class="step-box"><span>6. "We will call you tomorrow"</span><span style="color: #f43f5e; font-weight: bold;">-15% Drop</span></div>
+
+        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(244,63,94,0.1); border-radius: 8px; text-align: center;">
+          <div style="font-size: 0.8rem; color: #fecdd3;">TOTAL ABANDONMENT RATE</div>
+          <div style="font-size: 2rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-rose);">84%</div>
+          <div style="font-size: 0.85rem; color: #fecdd3; margin-top: 0.25rem;" id="legacyStats">252 lost clients / $100,800 monthly pipeline at risk</div>
+        </div>
+      </div>
+
+      <!-- Gideon Optimized Flow -->
+      <div class="card" style="border-top: 4px solid var(--accent-emerald);">
+        <h3 style="color: var(--accent-emerald); margin-bottom: 0.5rem;">Gideon 2-Step Frictionless Flow</h3>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 1rem;">Optimized high-velocity conversion architecture</p>
+
+        <div class="step-box" style="border-color: rgba(16,185,129,0.4);"><span>Step 1: Pick Service & Open Slot</span><span style="color: #10b981; font-weight: bold;">Instant Calendar</span></div>
+        <div class="step-box" style="border-color: rgba(16,185,129,0.4);"><span>Step 2: Enter Name & Phone Number</span><span style="color: #10b981; font-weight: bold;">1-Click SMS Confirmed</span></div>
+        <div class="step-box" style="border-style: dashed; color: var(--text-muted);"><span>Optional: Detailed intake deferred to post-confirmation SMS</span></div>
+
+        <div style="margin-top: 3.5rem; padding: 1rem; background: rgba(16,185,129,0.1); border-radius: 8px; text-align: center;">
+          <div style="font-size: 0.8rem; color: #a7f3d0;">TOTAL ABANDONMENT RATE</div>
+          <div style="font-size: 2rem; font-weight: 800; font-family: var(--font-mono); color: var(--accent-emerald);">25%</div>
+          <div style="font-size: 0.85rem; color: #a7f3d0; margin-top: 0.25rem;" id="gideonStats">225 confirmed bookings (+$70,800 recovered monthly)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function calculateFriction() {
+      const attempts = Number(document.getElementById('inAttempts').value) || 300;
+      const val = Number(document.getElementById('inValue').value) || 400;
+
+      const legacyLost = Math.round(attempts * 0.84);
+      const legacyLossCash = legacyLost * val;
+
+      const gideonLost = Math.round(attempts * 0.25);
+      const gideonConfirmed = attempts - gideonLost;
+      const recoveredClients = legacyLost - gideonLost;
+      const recoveredCash = recoveredClients * val;
+
+      document.getElementById('legacyStats').textContent = `${legacyLost} lost clients / $${legacyLossCash.toLocaleString()} monthly pipeline at risk`;
+      document.getElementById('gideonStats').textContent = `${gideonConfirmed} confirmed bookings (+$${recoveredCash.toLocaleString()} recovered monthly)`;
+    }
+
+    function resetDefaults() {
+      document.getElementById('inAttempts').value = 300;
+      document.getElementById('inValue').value = 400;
+      calculateFriction();
+    }
+  </script>
+</body>
+</html>
