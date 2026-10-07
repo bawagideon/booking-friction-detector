@@ -7,6 +7,17 @@
 
 ---
 
+## 🚀 Live Interactive Simulator & Proof
+
+[![Booking Friction Detector Live Interactive Simulator](assets/screenshot.png)](https://gideonbawa-website.netlify.app/simulators/booking-friction-detector/)
+
+* 🌐 **Live In-Browser Simulator:** [https://gideonbawa-website.netlify.app/simulators/booking-friction-detector/](https://gideonbawa-website.netlify.app/simulators/booking-friction-detector/)
+* 💼 **Portfolio Showcase:** [https://gideonbawa-website.netlify.app/#work](https://gideonbawa-website.netlify.app/#work)
+* 🛡️ **Verified QA Evidence:** HMAC-SHA256 Signed Contract (`ev-qa-contract-1791285928367-booking-friction-detector`)
+
+---
+
+
 ## 💸 Problem & Economic Pain
 A dental clinic, medical practice, or consultancy forces prospective patients through account creation and a 14-field medical history questionnaire before showing available time slots. **Abandonment rate spikes to 84%**.
 
